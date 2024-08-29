@@ -1,0 +1,103 @@
+message = 'I am invincible'
+key = 4
+
+FIRST_ALPHABET_CODE = ord('A')
+LAST_ALPHABET_CODE = ord('Z')
+ALPHABET_RANGE = LAST_ALPHABET_CODE - FIRST_ALPHABET_CODE + 1
+
+def encrypt(message, key):
+    ciphertext = ''
+
+    for alphabet in message.upper():
+        if alphabet.isalpha():
+            alphabet_code = ord(alphabet)
+            new_alphabet_code = alphabet_code + key
+            new_alphabet = chr(new_alphabet_code)
+        
+        #print (alphabet, alphabet_code, new_alphabet_code, new_alphabet) 
+        #ciphertext += new_alphabet
+            ciphertext = ciphertext + new_alphabet
+
+        else:
+            ciphertext = ciphertext + alphabet 
+            
+        if new_alphabet_code > LAST_ALPHABET_CODE:
+            new_alphabet_code -= ALPHABET_RANGE
+        
+        if new_alphabet_code < FIRST_ALPHABET_CODE:
+            new_alphabet_code += ALPHABET_RANGE
+       
+       
+            
+        
+        
+      
+    
+    print(ciphertext)
+
+
+
+FIRST_ALPHABET_CODE = ord('A')
+LAST_ALPHABET_CODE = ord('Z')
+ALPHABET_RANGE = LAST_ALPHABET_CODE - FIRST_ALPHABET_CODE + 1
+
+def decrypt(ciphertext, key):
+    message = ''
+
+    for alphabet in ciphertext.upper():
+        if alphabet.isalpha():
+            alphabet_code = ord(alphabet)
+            new_alphabet_code = alphabet_code - key
+            new_alphabet = chr(new_alphabet_code)
+        
+        #print (alphabet, alphabet_code, new_alphabet_code, new_alphabet)
+        #message += new_alphabet
+            message = message + new_alphabet
+        
+        else:
+            message = message + alphabet
+        
+        
+        if new_alphabet_code < LAST_ALPHABET_CODE:
+            new_alphabet_code -= ALPHABET_RANGE
+        
+        if new_alphabet_code > FIRST_ALPHABET_CODE:
+            new_alphabet_code += ALPHABET_RANGE
+        
+         
+            
+       
+    
+    
+    print(message)
+
+
+#caeser_key('I an invincible ZZ', 7)
+
+
+
+print()
+print('***CAESAR CIPHER EXECUTION***')
+print()
+print('Do you want to encrypt or decrypt?')
+user_input = input('e/d:').lower()
+print()
+if user_input == 'e':
+    print('ENCRYPTION MODE SELECTED')
+    print()
+    user_message = input('message to encrypt:')
+    user_key = int(input('key (integer):'))
+
+    encrypt(user_message, user_key)
+
+
+#caeser_key('I an invincible ZZ', 7)
+
+
+elif user_input == 'd':
+    print('DECRYPTION MODE SELECTED')
+    print()
+    user_message = input('message to decrypt:')
+    user_key = int(input('key (integer):'))
+
+    decrypt(user_message, user_key)
